@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Hangman</title>
+	</head>
+
+	<div class="wrapper">
+		<h1>Hangman</h1>	
+	</div> <!-- close wrapper -->
+
+	<div id="game">
+	<!-- game html goes here -->
+		
+	</div>
+
+
+	<script type="text/javascript">
+
+	var availableLetters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H',
+        'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S',
+        'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
+
+    var author = ["PROUST", "JOYCE", "CERVANTES", "MELVILLE", "SHAKESPEARE"];
+
+    // variables for tracking wins/losses
+    var wins= 0 ;
+    var losses= 0;
+
+    // Sets the mysteryTitle variable equal to a random choice from the title array.
+        var mysteryAuthor = author[Math.floor(Math.random() * author.length)];
+
+        chosenAuthor = mysteryAuthor.replace(/A|B|C|D|E|F|G|H|I|J|K|L|M|N|O|P|Q|R|S|T|U|V|W|X|Y|Z/g, " _ ");
+        console.log(mysteryAuthor);
+        console.log(chosenAuthor)
+
+
+    // when player presses a letter, run the following function
+
+    document.onkeyup = function(event) {
+
+    // Determine which key was pressed, make it upper case, and set it to the guess variable.
+        var guess = String.fromCharCode(event.keyCode).toUpperCase();
+
+     // If the user presses a letter, run the game logic.
+   // * does guess have a value? if yes continue, if no, error */
+       if (guess){
+        console.log ("GOT IT");
+       }
+        
+
+             // End of event
+            }
+
+    //HTML that will be placed into game div and displayed on the page.
+          var html = "<p>Press any letter to start playing.</p>"+
+          			chosenAuthor;
+
+    // Injecting the HTML from above into game div and updating the game information on page.
+          document.getElementById("game").innerHTML = html;
+
+
+    </script>
+
+  </body>
+</html>
