@@ -2,45 +2,56 @@ var availableLetters = ["A", "B", "C", "D", "E", "F", "G", "H",
         "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S",
         "T", "U", "V", "W", "X", "Y", "Z"];
 
-    var author = ["PROUST", "JOYCE", "CERVANTES", "MELVILLE", "SHAKESPEARE"];
+var author = ["PROUST", "JOYCE", "CERVANTES", "MELVILLE", "SHAKESPEARE"];
 
-    // variables for tracking wins/losses
-    var wins= 0 ;
-    var losses= 0;
+// variables for tracking wins/losses
+var wins= 0 ;
+var losses= 0;
 
-    // Sets the mysteryAuthor variable equal to a random choice from the title array.
-        var mysteryAuthor = author[Math.floor(Math.random() * author.length)];
+// Sets the mysteryAuthor variable equal to a random choice from the title array.
+var mysteryAuthor = author[Math.floor(Math.random() * author.length)];
 
-        chosenAuthor = mysteryAuthor.replace(/A|B|C|D|E|F|G|H|I|J|K|L|M|N|O|P|Q|R|S|T|U|V|W|X|Y|Z/g, " _ ");
-        console.log(mysteryAuthor);
-        var html =  mysteryAuthor;
-        var reveal = [];
+var chosenAuthor = mysteryAuthor.replace(/A|B|C|D|E|F|G|H|I|J|K|L|M|N|O|P|Q|R|S|T|U|V|W|X|Y|Z/g, " _ ");
+  console.log(mysteryAuthor);
+var html =  mysteryAuthor;
+var reveal = [];
 
-        // function revealLetters 
+  
 
     // when player presses a letter, run the following function
 
-    document.onkeyup = function(event) {
+  document.onkeyup = function(event) {
 
     // Determine which key was pressed, make it upper case, and set it to the guess variable.
-        var guess = String.fromCharCode(event.keyCode).toUpperCase();
+    var guess = String.fromCharCode(event.keyCode).toUpperCase();
     //Created a variable that turns the letters of mysteryAuthor into an array
-        var splitAuthor = mysteryAuthor.split("");
-        // console.log(splitAuthor);
+    var splitAuthor = mysteryAuthor.split("");
+    
     //Empty array where the location of correct guesses live
 
     //Looping through the array of letters in the splitAuthor array
-        for (i=0; i < splitAuthor.length; i++){ 
+    for (i=0; i < splitAuthor.length; i++){ 
     //If user's guess appears in the array then run this code...      
-          if (guess === splitAuthor[i]){
-            console.log(splitAuthor [i]);
-            console.log(i);
-            console.log("yes");
+    if (splitAuthor.includes(guess)){
+      console.log("yes");
+      splitAuthor[splitAuthor.indexOf(guess)] = "_";
+      console.log(splitAuthor);
+      
+
+      
+      
+
+      var newDiv = document.createElement("div");
+      newDiv.innerHTML = splitAuthor;
+
+
+      console.log(newDiv)
 
             function locateCorrectGuess(){
-              console.log([i])
+              return(splitAuthor.indexOf(guess));
             }
-            locateCorrectGuess()
+            
+            
             //find the location of the correct guess in the word
             // console.log(splitAuthor.indexOf(guess));
             // reveal.push(splitAuthor.indexOf(guess));
@@ -90,7 +101,7 @@ var availableLetters = ["A", "B", "C", "D", "E", "F", "G", "H",
   function load() {
     //HTML that will be placed into game div and displayed on the page.
         html = "<p>Press any letter to start playing.</p>"+
-                chosenAuthor + ;
+                chosenAuthor;
 
     // Injecting the HTML from above into game div and updating the game information on page.
           document.getElementById("game").innerHTML = html;
