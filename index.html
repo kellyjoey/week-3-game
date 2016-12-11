@@ -2,17 +2,56 @@
 <html>
 	<head>
 		<title>Hangman</title>
-    <script src = "app3.js"></script>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    	<script src = "app3.js"></script>
 	</head>
 
 	<div class="wrapper">
 		<h1>Hangman</h1>	
 	</div> <!-- close wrapper -->
-
+	<div class="col-md-12">
+		<div class="panel panel-default">
+  			<div class="panel-heading">
+    			<h3 class="panel-title">Hangman Word</h3>
+ 			</div>
+  			<div class="panel-body">
+    			<span class="text-center" id="hangmanWord"></span>
+  			</div>
+  		</div>
+	</div>
+	<div class="col-md-12">
 	<div id = "gameHTML">
+	</div>
 	<!-- game html goes here -->
-	<p id="game">""</p>	
-	<p id="wrongs">""</p>
+	<div class="panel-body">
+    	<span class="text-center" id="hangmanWord"></span>
+  	</div>
+
+  	<div class="panel panel-default">
+  					<div class="panel-heading">
+    					<h3 class="panel-title">Guesses Left</h3>
+ 					 </div>
+  					<div class="panel-body">
+    					<p><span class="text-center large" id="guessCounter"></span>
+    					</p>
+  					</div>
+				</div>
+		
+	
+	<div class="row">
+			<div class="panel panel-default">
+  					<div class="panel-heading">
+    					<h3 class="panel-title">Wrong Guesses</h3>
+    				<div class="panel-body">
+    					<h5 id="wrongs"></h5>
+ 					 </div>
+  					<div class="panel-body">
+    					<p> 
+    						<span class="text-center" id="guesses"></span>
+    					</p>
+  					</div>
+				</div>
+		</div>
 	<button id="reset">reset</button>
 	</div>
 

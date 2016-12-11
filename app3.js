@@ -1,29 +1,22 @@
-var availableLetters = ["A", "B", "C", "D", "E", "F", "G", "H",
-  "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S",
-  "T", "U", "V", "W", "X", "Y", "Z"];
-
+//Global Variables
 var author = ["PROUST", "JOYCE", "CERVANTES", "MELVILLE", "SHAKESPEARE"];
+var game = {
+    wins: 0,
+    losses: 0,
+    guessesLeft: 5,
+    correct: 0,
+}
 
-// variables for tracking wins/losses
-var wins = 0;
-var losses = 0;
-
-// Sets the mysteryAuthor variable equal to a random choice from the title array.
+// Sets the mysteryAuthor variable equal to a random choice from the author array.
 var mysteryAuthor = author[Math.floor(Math.random() * author.length)];
 var chosenWord = "";
 var index = [];
 var wrongGuesses = [];
 var wrongs = [];
+var splitAuthor = mysteryAuthor.split("");
+  console.log(mysteryAuthor);
 
-console.log(mysteryAuthor);
-
-// var chosenAuthor = mysteryAuthor.replace(/A|B|C|D|E|F|G|H|I|J|K|L|M|N|O|P|Q|R|S|T|U|V|W|X|Y|Z/g, " _ ");
-//   console.log(mysteryAuthor);
-// var html =  mysteryAuthor;
-// var reveal = [];
-
-
-
+  
 
 // when player presses a letter, run the following function
 
@@ -32,146 +25,89 @@ document.onkeyup = function (event) {
   // Determine which key was pressed, make it upper case, and set it to the guess variable.
   var guess = String.fromCharCode(event.keyCode).toUpperCase();
   //Created a variable that turns the letters of mysteryAuthor into an array
-  var splitAuthor = mysteryAuthor.split("");
-  console.log(splitAuthor);
-  //Empty array where the location of correct guesses live
-
-  //Looping through the array of letters in the splitAuthor array
-  for (i = 0; i < splitAuthor.length; i++) {
-    if (splitAuthor[i] === guess) {
-            index.push(i);
-            console.log(index);
-      console.log('nope');
-      console.log(guess);
+  for (var i = 0; i < splitAuthor.length; i++){
+    if (guess === splitAuthor[i]) {
+      game.correct++;
+      console.log("correct:" + game.correct);
+      document.getElementById("ltrPosition" + i).innerHTML = splitAuthor[i];
     }
-
-    for (var j = 0; j < chosenWord.length; j++) {
-      for (var c = 0; c < index.length; c++) {
-        if (index[c] === j) {
-          chosenWord[j] = guess;
-          let bird = chosenWord.join(" ");
-          document.getElementById('game').innerHTML = bird;
-
-        }
-      }
+    if(splitAuthor.indexOf(guess) === -1){
+      wrongGuesses.push(guess);    
     }
-    console.log(chosenWord);    
-    if( splitAuthor.indexOf(guess) === -1){
-               wrongGuesses.push(guess);
-               console.log(wrongGuesses);
-    }
+  }
 
-}    
+  for(var i = 0; i < 1; i++){
+    if (game.correct === splitAuthor.length){
+      winning();
+    }
+    if (game.guessesLeft === 1){
+      losing();
+    }
+  }
+  //Looping through the array of letters in the splitAuthor
+//    
 reset();
 if (wrongGuesses.indexOf(guess) != -1){
       wrongs.push(guess);    
       console.log(wrongs);
       document.getElementById('wrongs').innerHTML = wrongs;
+      game.guessesLeft--;
+      document.querySelector("#guessCounter").innerHTML = game.guessesLeft;
+      console.log("guesses left:" + game.guessesLeft);
   }
-    console.log(wrongGuesses);
   };
+
+
 
 
 function reset() {
     index = [];
-
-  console.log(index);
 }
-// splitAuthor[i] = guess;
-// console.log(splitAuthor);
-// mysteryAuthor=splitAuthor;
+
+function winning() {
+    alert("You Win!");
+    console.log("WIN");
+}
+
+function losing() {
+    alert("You Lose!");
+    console.log("LOSE");
+}
 
 
 
 
-
-// var newDiv = document.createElement("div");
-// newDiv.innerHTML = splitAuthor;
-
-
-// console.log(newDiv)
-
-//       function locateCorrectGuess(){
-//         return(splitAuthor.indexOf(guess));
-
-
-
-//find the location of the correct guess in the word
-// console.log(splitAuthor.indexOf(guess));
-// reveal.push(splitAuthor.indexOf(guess));
-// console.log(reveal);
-
-//add the index location to the letterIndex array
-// letterIndex.push(i);
-// console.log(letterIndex); 
-
-// console.log(splitAuthor(i));
-
-
-// var reveal = chosenAuthor.replace (/splitAuthor(i)/, guess);
-// console.log (reveal);
-//   var change = function (){
-//   console.log('hi');
-
-//   for (var l = 0; l < chosenAuthor.length; l++){
-//   for (var j = 0; j < letterIndex.length; j++){
-//       if (l === letterIndex[j]){
-//     chosenAuthor[l] = guess;
-//   }
-
-//   }
-// }
-
-
-
-// else{
-//   console.log("well dang")
-// }
-
-
-
-
-// If the user presses a letter, run the game logic.
-// * When user provides a letter, compare that letter to the chosenAuthor.  If they match do something, if not do something else. */
-
-// if (guess == "B" ){
-//  console.log("got it");}
-
-
-//         // End of event
-
-
+// End of event
 
 //Created load function
 function load() {
   //HTML that will be placed into game div and displayed on the page.
   chosenWord = mysteryAuthor.split(''),
-
     console.log(chosenWord);
-  for (var i = 0; i < chosenWord.length; i++) {
-    if (chosenWord[i] === "A" || "B" || "C" || "D" || "E" || "F" || "G" || "H" || "I" || "J" || "K" || "L" || "M" || "N" || "O" || "P" || "Q" || "R" || "S" || "T" || "U" || "V" || "W" || "X" || "Y" || "Z") {
-      chosenWord[i] = "_ ";
-      console.log('yikes');
-    }
-  }
-  var fish = chosenWord.join("");
-  document.getElementById('game').innerHTML = fish;
-  // html = "<p>Press any letter to start playing.</p>"+
-  //         chosenAuthor;
+  document.querySelector("#guessCounter").innerHTML = game.guessesLeft;
 
-  // Injecting the HTML from above into game div and updating the game information on page.
-  // document.getElementById("game").innerHTML = mysteryAuthor;
+  for (var i = 0; i < mysteryAuthor.length; i++) {
+    var dashes = document.createElement("span");
+    dashes.setAttribute("class", mysteryAuthor.charAt(i));
+    dashes.setAttribute("id", "ltrPosition" + i)
+    dashes.textContent = " _ ";
+    console.log(document.getElementById("hangmanWord").appendChild(dashes));
+  }
 };
 
 //Created event listener to call load function when page opens
-window.addEventListener("load", function () {
-  console.log("loading");
-  load();
-})
+window.addEventListener("load", function() {
+    console.log("loading");
+    load();
+    var resetBtn = document.querySelector("#reset");
+    console.log(resetBtn);
+    resetBtn.addEventListener("click", function() {
+        console.log("reset");
+        location.reload();
+    });
+});
 
-var button = document.querySelectorAll("#reset");
-console.log(button); 
-button.addEventListener("click", function(){
+document.getElementById("reset").addEventListener("click", function(){
   console.log("reset");
-  load();
+  // load();
   });

@@ -51,9 +51,9 @@ var wordToGuess = {
 		});
 	}
 };
-function initialize();
-// let html = "<p>Press any letter to start playing.</p>"+
-//                 wordToGuess;
+
+
+$("#gameHTML").append(wordToGuess);
 
     // Injecting the HTML from above into game div and updating the game information on page.
   //         document.getElementById('game').innerHTML = html;
