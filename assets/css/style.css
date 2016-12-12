@@ -1,0 +1,25 @@
+body {
+     margin: 0;
+     background-color: #7b4397;
+     background-repeat:no-repeat;
+     background-position: center;
+     max-height: 100%;
+     background: url("../images/bg-pattern.png"), #7b4397;
+  /* fallback for old browsers */
+  background: url("../images/bg-pattern.png"), -webkit-linear-gradient(to left, #7b4397, #dc2430);
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: url("../images/bg-pattern.png"), linear-gradient(to left, #7b4397, #dc2430);
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  color: white;
+}
+
+.well {
+	background-color: #1da1f2;
+	color: black;
+}
+
+#bookshelves {
+	max-width: 90%;
+	max-height: 90%;
+}
+	

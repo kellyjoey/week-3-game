@@ -7,7 +7,6 @@ var game = {
     correct: 0,
 }
 
-
 // Sets the mysteryAuthor variable equal to a random choice from the author array.
 var mysteryAuthor = author[Math.floor(Math.random() * author.length)];
 var chosenWord = "";
@@ -66,17 +65,13 @@ function reset() {
 }
 
 function winning() {
-    alert("You Win!  The mystery author was: " + mysteryAuthor + "!");
+    alert("You Win!");
     console.log("WIN");
-    game.wins++;
-    document.querySelector("#winsCounter").innerHTML = game.wins;
 }
 
 function losing() {
-    alert("You Lose!  The mystery author was: " + mysteryAuthor + "!");
+    alert("You Lose!");
     console.log("LOSE");
-    game.losses++;
-    document.querySelector("#lossesCounter").innerHTML = game.losses;
 }
 
 
