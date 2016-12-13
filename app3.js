@@ -1,9 +1,10 @@
 //Global Variables
 var author = ["PROUST", "JOYCE", "CERVANTES", "MELVILLE", "SHAKESPEARE"];
+var availableLetters = [ 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
 var game = {
     wins: 0,
     losses: 0,
-    guessesLeft: 5,
+    guessesLeft: 7,
     correct: 0,
 }
 
@@ -26,16 +27,22 @@ document.onkeyup = function (event) {
   // Determine which key was pressed, make it upper case, and set it to the guess variable.
   var guess = String.fromCharCode(event.keyCode).toUpperCase();
   //Created a variable that turns the letters of mysteryAuthor into an array
-  for (var i = 0; i < splitAuthor.length; i++){
-    if (guess === splitAuthor[i]) {
-      game.correct++;
-      console.log("correct:" + game.correct);
-      document.getElementById("ltrPosition" + i).innerHTML = splitAuthor[i];
+  for (var i = 0; i < splitAuthor.length; i++) {
+    // Is guess a valid letter?  If yes, proceed.
+    if (availableLetters.indexOf(guess) > -1) {
+        if (guess === splitAuthor[i]) {
+        game.correct++;
+        console.log("correct:" + game.correct);
+        document.getElementById("ltrPosition" + i).innerHTML = splitAuthor[i];
+        }
+          if(splitAuthor.indexOf(guess) === -1){
+            wrongGuesses.push(guess); 
+              
+          
+        }
+      }
     }
-    if(splitAuthor.indexOf(guess) === -1){
-      wrongGuesses.push(guess);    
-    }
-  }
+    
 
   for(var i = 0; i < 1; i++){
     if (game.correct === splitAuthor.length){
@@ -49,12 +56,15 @@ document.onkeyup = function (event) {
 //    
 reset();
 if (wrongGuesses.indexOf(guess) != -1){
+  // Is this letter already in your wrong guesses? If not, proceed.
+  if  (wrongs.indexOf(guess) === -1){
       wrongs.push(guess);    
       console.log(wrongs);
       document.getElementById('wrongs').innerHTML = wrongs;
       game.guessesLeft--;
       document.querySelector("#guessCounter").innerHTML = game.guessesLeft;
       console.log("guesses left:" + game.guessesLeft);
+  }
   }
   };
 
@@ -104,15 +114,13 @@ function load() {
 window.addEventListener("load", function() {
     console.log("loading");
     load();
-    var resetBtn = document.querySelector("#reset");
-    console.log(resetBtn);
-    resetBtn.addEventListener("click", function() {
-        console.log("reset");
-        location.reload();
-    });
-});
-
-document.getElementById("reset").addEventListener("click", function(){
-  console.log("reset");
-  // load();
   });
+
+function replay() {
+var resetBtn = document.querySelector("#reset");
+document.getElementById("reset").addEventListener("click", function(){
+    console.log("replay");
+    load();
+});
+ 
+
