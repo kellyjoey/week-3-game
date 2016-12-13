@@ -8,7 +8,7 @@ var game = {
     correct: 0,
 }
 
-
+var resetBtn = document.querySelector("#reset");
 // Sets the mysteryAuthor variable equal to a random choice from the author array.
 var mysteryAuthor = author[Math.floor(Math.random() * author.length)];
 var chosenWord = "";
@@ -114,13 +114,15 @@ function load() {
 window.addEventListener("load", function() {
     console.log("loading");
     load();
-  });
-
-function replay() {
-var resetBtn = document.querySelector("#reset");
-document.getElementById("reset").addEventListener("click", function(){
-    console.log("replay");
-    load();
+    var resetBtn = document.querySelector("#reset");
+    console.log(resetBtn);
+    resetBtn.addEventListener("click", function() {
+        console.log("reset");
+        location.reload();
+    });
 });
- 
 
+document.getElementById("reset").addEventListener("click", function(){
+  console.log("reset");
+  load();
+  });
