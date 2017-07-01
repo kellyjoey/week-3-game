@@ -122,7 +122,4 @@ window.addEventListener("load", function() {
     });
 });
 
-document.getElementById("reset").addEventListener("click", function(){
-  console.log("reset");
-  load();
-  });
+// 
