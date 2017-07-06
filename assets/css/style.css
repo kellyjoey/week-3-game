@@ -13,11 +13,29 @@ body {
   color: white;
 }
 
+h1 {
+  font-size: 80px;
+  text-shadow: 1px 4px #555252;
+}
+
+h3 {
+  font-size: 40px !important;
+  color: white !important;
+  font-weight: bold !important;
+  text-shadow: 1px 4px #555252 !important;
+}
+
 .well {
 	background-color: rgba(150,150,150,0.85);
 	color: black;
   border: none;
+  margin: 30px;
 }
+
+.panel {
+  background-color: rgba(150,150,150,0.85);
+}
+
 
 #bookshelves {
 	max-width: 90%;
